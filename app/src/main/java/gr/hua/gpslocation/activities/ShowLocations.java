@@ -1,4 +1,4 @@
-package gr.hua.gpslocation;
+package gr.hua.gpslocation.activities;
 
 import android.app.Activity;
 import android.content.Context;
@@ -18,8 +18,12 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import gr.hua.gpslocation.R;
+
 public class ShowLocations extends Activity {
-    Button button ;
+
+    private Button button ;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,7 +34,7 @@ public class ShowLocations extends Activity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent();
-                i.setClassName("gr.hua.gpslocation", "gr.hua.gpslocation.MainActivity");
+                i.setClassName("gr.hua.gpslocation", "gr.hua.gpslocation.activities.MainActivity");
                 startActivity(i);
 
             }
@@ -45,11 +49,14 @@ public class ShowLocations extends Activity {
         //Receive data from Content Provider
         Cursor c = this.getContentResolver().query(uri, null, null, null, null);
         if (c.getCount()==0) {
+
             Log.e("Sorry", "No records found");
             Toast.makeText(ctx,"No Records Found!Open Your Gps And Try Again",Toast.LENGTH_LONG).show();
             return;
+
         }
         if (c.moveToFirst()) {
+
             TableLayout stk = (TableLayout) findViewById(R.id.table_main);
             TableRow tbrow0 = new TableRow(this);//Create a dynamic table
             tbrow0.setBackgroundColor(Color.parseColor("#003399"));
@@ -74,6 +81,7 @@ public class ShowLocations extends Activity {
             stk.addView(tbrow0);
 
             do {
+
                 TableRow tbrow = new TableRow(this);
                 TextView t0v = new TextView(this);
                 t0v.setText(c.getString(c.getColumnIndex("_USEID")));

@@ -7,6 +7,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 
+import gr.hua.gpslocation.database.DBHelper;
+
 /**
  * Created by maria on 2/8/2016.
  */
@@ -58,6 +60,7 @@ public class MyContentProvider extends ContentProvider {
 
         long id = -1;
         SQLiteDatabase mDB = mDBHelper.getWritableDatabase();
+
         switch(sUriMatcher.match(uri)){
             case 1:
                 id = mDB.insert(DBHelper.DATABASE_TABLE, null, values);
@@ -65,14 +68,16 @@ public class MyContentProvider extends ContentProvider {
             default:
                 throw new IllegalArgumentException ("Content URI pattern not recognizable: "+uri);
         }
-        return Uri.parse(uri.toString()+"/"+id);
 
+        return Uri.parse(uri.toString()+"/"+id);
     }
 
     @Override
     public int delete(Uri uri, String selection, String[] selectionArgs) {
+
         int count=0;
         SQLiteDatabase mDB = mDBHelper.getWritableDatabase();
+
         switch(sUriMatcher.match(uri)){
             case 1:
                 count = mDB.delete(DBHelper.DATABASE_TABLE,null,null);
@@ -80,21 +85,16 @@ public class MyContentProvider extends ContentProvider {
             default:
                 throw new IllegalArgumentException ("Content URI pattern not recognizable: "+uri);
         }
+
         return count;
     }
 
     @Override
-    public int update(Uri uri, ContentValues values, String selection,
-                      String[] selectionArgs) {
-        // TODO Auto-generated method stub
+    public int update(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
         return 0;
     }
 
     @Override
-    public String getType(Uri uri) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
+    public String getType(Uri uri) { return null; }
 
 }

@@ -1,10 +1,7 @@
-package gr.hua.gpslocation;
+package gr.hua.gpslocation.database;
 
-import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
@@ -21,6 +18,8 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
+
+import gr.hua.gpslocation.MyContentProvider;
 
 /**
  * Created by maria on 2/9/2016.

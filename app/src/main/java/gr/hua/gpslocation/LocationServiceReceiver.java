@@ -17,9 +17,8 @@ import java.util.List;
  * Created by maria on 2/8/2016.
  */
 public class LocationServiceReceiver extends BroadcastReceiver {
-    public LocationServiceReceiver() {
-        // TODO Auto-generated constructor stub
-    }
+
+    public LocationServiceReceiver() { }
 
     @Override
     public void onReceive(Context context, Intent arg1) {

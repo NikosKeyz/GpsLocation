@@ -1,4 +1,4 @@
-package gr.hua.gpslocation;
+package gr.hua.gpslocation.database;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -27,8 +27,9 @@ public class DBHelper extends SQLiteOpenHelper {
 
 
     public DBHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
+
         super(context, name, factory, version);
-        // TODO Auto-generated constructor stub
+
     }
     public DBHelper(Context context) {
         super(context,DATABASE_NAME,null,DATABASE_VERSION);

@@ -3,14 +3,11 @@ package gr.hua.gpslocation;
 import android.app.Service;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
-import android.net.Uri;
 import android.os.IBinder;
 import android.util.Log;
 import android.widget.Toast;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import gr.hua.gpslocation.database.DBSelect;
 
 public class RetrieveDataService extends Service {
     public RetrieveDataService() {
@@ -41,14 +38,13 @@ public class RetrieveDataService extends Service {
 
         @Override
     public IBinder onBind(Intent intent) {
-        // TODO: Return the communication channel to the service.
+
         throw new UnsupportedOperationException("Not yet implemented");
     }
     @Override
     public void onDestroy() {
-        // TODO Auto-generated method stub
-
         super.onDestroy();
+
         //delete current data from db
         int count=getApplicationContext().getContentResolver().delete(MyContentProvider.myUri,null,null);
         Log.e("Delete", "Records Deleted " + count);

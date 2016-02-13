@@ -1,4 +1,4 @@
-package gr.hua.gpslocation;
+package gr.hua.gpslocation.database;
 
 import android.content.Context;
 import android.net.wifi.WifiInfo;
