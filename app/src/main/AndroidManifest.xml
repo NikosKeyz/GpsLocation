@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="gr.hua.gpslocation">
+
+
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name="gr.hua.gpslocation.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <service
+            android:name="gr.hua.gpslocation.GetLocationService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <receiver
+        android:name="gr.hua.gpslocation.LocationServiceReceiver"
+        android:enabled="true"
+        android:exported="false"
+        android:permission="android.permission.RECEIVE_BOOT_COMPLETED">
+        <intent-filter>
+            <action android:name="android.intent.action.BOOT_COMPLETED" />
+            <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+            <action android:name="android.location.PROVIDERS_CHANGED"/>
+            <category android:name="android.intent.category.HOME" />
+        </intent-filter>
+        </receiver>
+
+        <service
+            android:name="gr.hua.gpslocation.RetrieveDataService"
+            android:enabled="true"
+            android:exported="true" />
+        <receiver
+            android:name=".RetrieveDataSheduleReceiver"
+            android:enabled="true"
+            android:exported="false"
+            android:permission="android.permission.RECEIVE_BOOT_COMPLETED">
+            <intent-filter>
+                <action android:name="android.location.PROVIDERS_CHANGED" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name="gr.hua.gpslocation.RetrieveDataStartServiceReceiver" >
+        </receiver>
+
+        <activity android:name="gr.hua.gpslocation.ShowLocations"
+            android:label="com.example.maria.gpsLocation.ShowLocations">
+            <intent-filter>
+                <action android:name="com.example.maria.gpsLocation.ShowLocations"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <provider
+            android:authorities="gr.hua.gpslocation.MyContentProvider"
+            android:name=".MyContentProvider"
+            android:exported="true" >
+        </provider>
+
+    </application>
+
+</manifest>
